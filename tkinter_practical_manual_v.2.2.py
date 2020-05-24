@@ -558,7 +558,7 @@ class Tkinter_ttw_GUI:
         ttk.Sizegrip(self.aTop).pack(side='bottom', anchor='se')
 
         # Image
-        self.img_author1 = tk.PhotoImage(file="img/programoteq.150.png")
+        self.img_author1 = tk.PhotoImage(file="img/programoteq.100.png")
         self.img_Label1 = tk.Label(self.aTop, image=self.img_author1)
         self.img_Label1.pack()
 
