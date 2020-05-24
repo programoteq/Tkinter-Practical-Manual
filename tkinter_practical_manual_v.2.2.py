@@ -559,8 +559,8 @@ class Tkinter_ttw_GUI:
 
         # Image
         self.img_author1 = tk.PhotoImage(file="img/programoteq.100.png")
-        self.img_Label1 = tk.Label(self.aTop, image=self.img_author1)
-        self.img_Label1.pack()
+        self.img_Label1 = ttk.Label(self.aTop, image=self.img_author1)
+        self.img_Label1.pack(side='bottom')
 
 
 if __name__ == "__main__":
