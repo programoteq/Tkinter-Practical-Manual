@@ -12,7 +12,7 @@
 import tkinter as tk
 import tkinter.ttk as ttk  
 import tkinter.messagebox
-
+from PIL import ImageTk, Image
 
 def main():
         
@@ -58,7 +58,10 @@ class Tkinter_GUI:
 
         self.img_icon = tk.PhotoImage(file="img/Other-python-icon-48.png")
         master.iconphoto(True, self.img_icon)
-
+        ''' 
+        Using icons with .ico extension simplifies two above lines to one:
+            master.iconbitmap("img/icon.ico")
+        '''
 
         # ----- Widgets section -----
 
@@ -105,11 +108,11 @@ class Tkinter_GUI:
       
         # Read only Entry as a display
         self.ro_entry_display_var = tk.StringVar()
-        self.ro_entry_display = tk.Entry(self.labelframe_entry,
-                                       width=26,
-                                       fg='white',
-                                       textvariable = self.ro_entry_display_var,
-                                       justify="right")       # or tk.RIGHT
+        self.ro_entry_display = tk.Entry(self.labelframe_entry,                                         
+                                         width=26, 
+                                         fg='white', 
+                                         textvariable = self.ro_entry_display_var, 
+                                         justify="right")       # or tk.RIGHT
         self.ro_entry_display.config(state='readonly',
                                      readonlybackground='#0b486b',
                                      font = ("Segoe UI", 10))
@@ -316,9 +319,18 @@ class Tkinter_GUI:
         frame_separator3 = tk.Frame(height=90) 
 
 
-        # Image
-        self.img_author = tk.PhotoImage(file="img/programoteq.100.png")
+        # Image .png file format
+        self.img_author = ImageTk.PhotoImage(
+            Image.open("img/programoteq.100.png"))
         self.img_Label = tk.Label(master, image=self.img_author)
+        self.img_Label.image = self.img_author
+        ''' 
+        Working with popular file formats like .png or .jpg, 
+        (any format except .gif and .pgm) requires 'PIL' library. 
+        That's a little strange but in order to use PIL, you have to 
+        install a new version of PIL library called 'Pillow':
+                pip install Pillow 
+        '''
 
         # Close Button
         self.close_button = tk.Button(master, text="Close", padx=50, pady=2,
@@ -386,6 +398,7 @@ class Tkinter_GUI:
                 side=TOP or BOTTOM or LEFT or RIGHT,
                 fill=BOTH, X, Y
                 expand=1    - widget expands when window resized
+                anchor='se'
                 
             .grid(column=1, row=0)
                 column=1, row=0
@@ -549,18 +562,18 @@ class Tkinter_ttw_GUI:
         noteb.pack(fill='both')
 
         ttk.Label(tab1, text='ttk.Notebook', font='Tahoma 10 bold').pack(pady=1)
-
         ttk.Button(tab1, text='ttk.Button 2').pack(pady=10)
-
         ttk.Checkbutton(tab1, text='ttk.Checkbox').pack(padx=10, pady=1)
 
         # Sizegrip Widget
         ttk.Sizegrip(self.aTop).pack(side='bottom', anchor='se')
 
         # Image
-        self.img_author1 = tk.PhotoImage(file="img/programoteq.100.png")
-        self.img_Label1 = ttk.Label(self.aTop, image=self.img_author1)
-        self.img_Label1.pack(side='bottom')
+        self.img_author = ImageTk.PhotoImage(
+            Image.open("img/programoteq.100.png"))
+        self.img_Label = tk.Label(self.aTop, image=self.img_author)
+        self.img_Label.image = self.img_author
+        self.img_Label.pack(side='bottom')
 
 
 if __name__ == "__main__":
